@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package exam1;
+
+message UserPartner {
+    string id = 11;
+    string user_id = 1;
+    string partner_id = 3;
+    string alias_user_id = 5;
+    map<string, int64> apps = 6;
+    string phone = 7;
+    int64 created = 10;
+    int64 update_at = 12;
+}
+
+message InsertRequest {
+    UserPartner user = 1;
+}
+
+message InsertResponse {
+    int32 statusCode = 1; // statusCode = 1 -> success
+    string message = 2;
+}
+
+message ReadRequest {
+    string UserId = 1;
+}
+
+message ReadResponse {
+    UserPartner User = 1;
+}
+
+message UpdateRequest {
+    string UserID = 1;
+    UserPartner NewUser = 2;
+}
+
+message UpdateResponse {
+    UserPartner updateUser = 1;
+}
+
+message ListRequest {
+    int32 count = 1;
+}
+
+message ListResponse {
+    UserPartner Users = 1;
+}
+
+service UserServer {
+    rpc Insert(InsertRequest) returns (InsertResponse) {}
+    rpc Read(ReadRequest) returns ( ReadResponse) {}
+    rpc Update(UpdateRequest) returns (UpdateResponse) {}
+    rpc List(ListRequest) returns (stream ListResponse) {}
+}
