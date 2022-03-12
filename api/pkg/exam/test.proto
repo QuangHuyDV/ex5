@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package exam;
+
+message UserPartner {
+    string id = 11;
+    string user_id = 1;
+    string partner_id = 3;
+    string alias_user_id = 5;
+    map<string, int64> apps = 6;
+    string phone = 7;
+    int64 created = 10;
+    int64 update_at = 12;
+}
+
+message UserPartnerRequest {
+    string user_id = 1;
+    string phone = 2;
+    int64 limit = 3;
+}
